@@ -50,3 +50,8 @@ def formate_date(operation):
     date: str = operation['date']
     dt_time = dt.datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f")
     return dt_time.strftime("%d.%m.%Y")
+
+def descrtiption_operation(descr):
+    if isinstance(descr, dict) and 'description' in descr:
+        name_description = descr['description']
+        return name_description
