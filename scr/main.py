@@ -55,3 +55,9 @@ def descrtiption_operation(descr):
     if isinstance(descr, dict) and 'description' in descr:
         name_description = descr['description']
         return name_description
+
+def money_count(money):
+    for operation in money:
+        amount = operation['operationAmount']['amount']
+        currency = operation['operationAmount']['currency']['name']
+        return f"{amount} {currency}"
