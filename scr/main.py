@@ -1,4 +1,5 @@
 import json
+import datetime as dt
 
 def open_json_file(json_file):
 
@@ -44,3 +45,8 @@ def mask_operation_to(operation_to):
             masked_number_card = f"**{number_card[-4:]}"
             return f"{(' '.join(parts[:-1]))} {masked_number_card}"
     return f"Без номера"
+
+def formate_date(operation):
+    date: str = operation['date']
+    dt_time = dt.datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f")
+    return dt_time.strftime("%d.%m.%Y")
