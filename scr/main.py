@@ -2,15 +2,13 @@ import json
 import datetime as dt
 
 def open_json_file(json_file):
-
     with open(json_file) as file:
         return json.load(file)
 
 def filter_of_EXECUTED_operations(operations_data):
-
     list_of_file = []
     for operation in operations_data:
-        if operation['state'] == 'EXECUTED':
+        if operation.get('state') == 'EXECUTED':
             list_of_file.append(operation)
             continue
     return list_of_file
@@ -61,3 +59,14 @@ def money_count(money):
         amount = operation['operationAmount']['amount']
         currency = operation['operationAmount']['currency']['name']
         return f"{amount} {currency}"
+
+
+#Передача параметров
+data = open_json_file("/home/polina/AccountOperation/Coursework4/data/operations.json")
+operations = filter_of_EXECUTED_operations(data)
+operations = filter_operations_data(operations)
+
+for i in operations[:5]:
+    print(f"{formate_date(i)} {descrtiption_operation(i)}")
+    print(f"{mask_operation_from(i)} {mask_operation_to(i)}")
+    print(f"{money_count([i])}\n")
